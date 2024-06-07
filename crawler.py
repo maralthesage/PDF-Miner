@@ -6,9 +6,11 @@ import re
 pdf_path = 'path/to/root/folder/of/all/pdfs'
 
 def extract_text_from_pdf(pdf_path):
+    
     """ This function reads the textual information in a pdf and extract them in raw format for further processing. 
     It divides the text into pages and the output is a list of all the page contents.
     """
+
     # Open the PDF file
     pdf_document = fitz.open(pdf_path)
     whole_text = []
@@ -23,8 +25,10 @@ def extract_text_from_pdf(pdf_path):
 
 
 def append_data(pdf_text,filename):
+
     """ This function extracts chunks of data from the raw text that was extracted from the PDF and organizes them in a tabular format. 
     The patterns should be adjusted according to the pdfs'structure"""
+
     pattern = r'(?m)(?<!\d °)(?<!\d°)(?<!z\. )(?<!z\.)([A-Z]\. )(.*?)(?=(?<!\d°)(?<!z\. )(?<!z\.B)(?<!\d °)(?<!\d°)[A-G]\. |\Z)'
     count = 1
     cat_text = {}
@@ -44,12 +48,13 @@ def append_data(pdf_text,filename):
 
 
 def folder_crawler(root_folder):
+
     """ This function crawls a folder with all the PDF files that are to be crawled and mined. 
     Using the two other functions (extract_text_from_pdf, append_data) it crawls the files in the folder,
     reads the text and process it further to create csv files that structure the pdf data into columns of 
     product_numbers and product descriptions (can be modified based on requirements).
-
     """
+
     # Walk through the root folder and its subfolders
     for foldername, subfolders, filenames in os.walk(root_folder):
         for filename in filenames:
