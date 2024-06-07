@@ -6,7 +6,7 @@ import re
 pdf_path = 'path/to/root/folder/of/all/pdfs'
 
 def extract_text_from_pdf(pdf_path):
-    
+
     """ This function reads the textual information in a pdf and extract them in raw format for further processing. 
     It divides the text into pages and the output is a list of all the page contents.
     """
@@ -64,5 +64,7 @@ def folder_crawler(root_folder):
                 pdf_text = extract_text_from_pdf(pdf_path)
                 append_data(pdf_text,filename)
 
+                
 
-folder_crawler(pdf_path)
+if __name__ == '__main__':
+    folder_crawler(pdf_path)
